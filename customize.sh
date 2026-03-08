@@ -1,46 +1,30 @@
 #!/bin/bash
+set -e
 
-echo "Enable NetworkManager"
-systemctl enable NetworkManager
+echo ">>> Enabling display managers"
+systemctl enable sddm
+systemctl enable gdm
+systemctl enable lightdm
 
-echo "Create user"
-useradd -m user
-echo "user:user" | chpasswd
-echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo ">>> Creating default user"
+useradd -m -G wheel -s /bin/bash jakub
+echo "jakub:changeme" | chpasswd
 
-echo "Enable multilib (for Steam)"
-sed -i '/\[multilib\]/,/Include/s/^#//' /etc/pacman.conf
-pacman -Sy
+echo ">>> Setting locale"
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-echo "Install Steam"
-pacman -S --noconfirm steam
+echo ">>> Setting hostname"
+echo "Arch-Jakib" > /etc/hostname
 
-echo "Install yay"
-
-su user <<'EOF'
-
-cd ~
-git clone https://aur.archlinux.org/yay.git
-cd yay
+echo ">>> Installing yay for AUR packages"
+git clone https://aur.archlinux.org/yay.git /tmp/yay
+cd /tmp/yay
 makepkg -si --noconfirm
+cd /
+rm -rf /tmp/yay
 
-yay -S --noconfirm \
-linux-cachyos \
-linux-cachyos-headers \
-appimagelauncher \
-tilix \
-peazip \
-stacer \
-kvantum-qt6 \
-pywal \
-obsidian \
-localsend \
-cursor-bin \
-opera-gx \
-prismlauncher \
-lunar-client \
-curseforge \
-davinci-resolve \
-upscayl
-
-EOF
+echo ">>> Optional: configure Calamares"
+mkdir -p /etc/calamares
+# tutaj możesz wkleić swój profil Calamares np. z CachyOS/Garuda
