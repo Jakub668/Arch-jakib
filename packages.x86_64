@@ -1,7 +1,7 @@
 base
 base-devel
-linux-cachyos
-linux-cachyos-headers
+linux
+linux-headers
 
 grub
 syslinux
@@ -29,12 +29,22 @@ gimp
 inkscape
 obs-studio
 
-steam
 wine
 winetricks
 
 timeshift
 reflector
+flatpak
+distrobox
+
+btop
+fastfetch
+
+flameshot
+
+rclone
+
+dolphinreflector
 flatpak
 distrobox
 appimagelauncher
