@@ -1,40 +1,80 @@
-base
-base-devel
-linux
-linux-headers
+# Kernel
+linux-cachyos
+linux-cachyos-headers
 
-grub
-syslinux
-efibootmgr
-dosfstools
-mtools
+# Display managers
+sddm       # KDE/Plasma
+gdm        # GNOME
+lightdm    # Cinnamon/ogólny
 
-sudo
-git
-networkmanager
-
+# Desktop environments
+plasma-meta
 gnome
-gnome-extra
-
-plasma
-kde-applications
-
 cinnamon
 
-firefox
-vlc
-libreoffice-fresh
+# Xorg / Wayland
+xorg-server
+xorg-xinit
+xorg-apps
+xorg-xrandr
+xorg-xsetroot
+xorg-xinput
+mesa
+mesa-vulkan
 
+# Essential tools
+base
+base-devel
+git
+wget
+curl
+vim
+htop
+btop
+rsync
+
+# Browsers
+firefox
+operagx
+
+# Multimedia
+vlc
+obs-studio
+davinci-resolve
+
+# Office / Notes
+libreoffice-fresh
+obsidian
+bitwarden
+timeshift
+
+# Image / Design
 gimp
 inkscape
-obs-studio
+upscayl
+flameshot
+kvantum-qt6
+pywal
 
-wine
-winetricks
+# Gaming
+steam
+minecraft-launcher
+lunar-client
+curseforge
 
-timeshift
-reflector
+# Utilities
+tilix
+peazip
+stacer
+rclone
+appimagelauncher
+localsend
+fastfetch
+
+# Package helpers
+yay
 flatpak
+flathubflatpak
 distrobox
 
 btop
@@ -64,3 +104,5 @@ kvantum-qt6
 pywal
 
 dolphin
+
+grub
