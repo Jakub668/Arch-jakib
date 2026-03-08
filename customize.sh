@@ -1,12 +1,20 @@
 #!/bin/bash
 
-echo "Instalacja yay"
+echo "Enable NetworkManager"
+systemctl enable NetworkManager
 
+echo "Install yay"
+
+useradd -m user
+echo "user:user" | chpasswd
+echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+su user <<'EOF'
+
+cd ~
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
-
-echo "Instalacja aplikacji AUR"
 
 yay -S --noconfirm \
 obsidian \
@@ -19,4 +27,4 @@ curseforge \
 davinci-resolve \
 upscayl
 
-systemctl enable sddm
+EOF
