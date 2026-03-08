@@ -11,7 +11,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Run Arch container
+      - name: Build ISO
         run: |
           docker run --privileged -v ${{ github.workspace }}:/work archlinux:latest /bin/bash -c "
 
@@ -24,6 +24,8 @@ jobs:
           cp -r archiso/configs/releng myiso
 
           cp packages.x86_64 myiso/packages.x86_64
+          cp customize.sh myiso/airootfs/root/customize.sh
+          chmod +x myiso/airootfs/root/customize.sh
 
           mkarchiso -v myiso
           "
