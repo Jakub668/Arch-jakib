@@ -1,50 +1,48 @@
-name: Build Arch ISO with CachyOS Kernel
+name: Build CachyOS Kernel
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
           sudo apt update
           sudo apt install -y \
-            base-devel \
-            arch-install-scripts \
-            git \
-            wget \
-            xorriso \
-            syslinux \
+            build-essential \
             bc \
             bison \
             flex \
             libssl-dev \
             libelf-dev \
+            git \
+            wget \
             rsync
 
-      - name: Build CachyOS kernel
+      - name: Prepare kernel
         run: |
           cd linux
           make defconfig
-          make -j$(nproc)
-          mkdir -p ../boot
-          cp arch/x86/boot/bzImage ../boot/
 
-      - name: Prepare ArchISO
+      - name: Build kernel
         run: |
-          git clone https://github.com/archlinux/archiso.git
-          cp -r archiso/configs/releng myarch
-          cp ../boot/bzImage myarch/airootfs/boot/
-          cd myarch
-          mkarchiso -v .
+          cd linux
+          make -j$(nproc)
 
-      - name: Upload ISO
+      - name: Save kernel
+        run: |
+          mkdir output
+          cp linux/arch/x86/boot/bzImage output/
+
+      - name: Upload kernel artifact
         uses: actions/upload-artifact@v4
         with:
-          name: myarch-cachyos.iso
-          path: out/
+          name: cachyos-kernel
+          path: output/
