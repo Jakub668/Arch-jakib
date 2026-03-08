@@ -11,25 +11,25 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install archiso
+      - name: Run Arch container
         run: |
-          sudo apt update
-          sudo apt install -y archiso git
+          docker run --privileged -v ${{ github.workspace }}:/work archlinux:latest /bin/bash -c "
 
-      - name: Prepare profile
-        run: |
-          git clone https://github.com/archlinux/archiso
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm archiso git
+
+          cd /work
+
+          git clone https://gitlab.archlinux.org/archlinux/archiso.git
           cp -r archiso/configs/releng myiso
-          cp packages.x86_64 myiso/packages.x86_64
-          cp customize.sh myiso/airootfs/root/customize.sh
-          chmod +x myiso/airootfs/root/customize.sh
 
-      - name: Build ISO
-        run: |
-          sudo mkarchiso -v myiso
+          cp packages.x86_64 myiso/packages.x86_64
+
+          mkarchiso -v myiso
+          "
 
       - name: Upload ISO
         uses: actions/upload-artifact@v4
         with:
-          name: custom-arch
+          name: arch-custom
           path: out/*.iso
