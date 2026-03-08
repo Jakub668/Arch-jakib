@@ -106,3 +106,7 @@ pywal
 dolphin
 
 grub
+
+efibootmgr
+
+calamares
