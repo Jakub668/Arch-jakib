@@ -7,6 +7,8 @@ pacman-key --populate archlinux
 
 plymouth-set-default-theme -R arch-jakib
 
+sudo -u liveuser kwriteconfig5 --file kdeglobals --group KDE --key LookAndFeelPackage org.kde.breeze.desktop
+
 echo "Enable NetworkManager"
 systemctl enable NetworkManager
 
