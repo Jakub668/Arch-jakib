@@ -1,39 +1,43 @@
 name: Build Arch-Jakib ISO
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+push:
+branches: [ main ]
+workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+build:
+runs-on: ubuntu-latest
 
-    steps:
+steps:
+  - name: Checkout repo
+    uses: actions/checkout@v4
 
-    - name: Checkout repository
-      uses: actions/checkout@v4
+  - name: Prepare folders
+    run: |
+      mkdir -p work
+      mkdir -p out
 
-    - name: Build ISO
-      run: |
-        docker run --privileged \
-        -v ${{ github.workspace }}:/work \
-        archlinux:latest \
-        /bin/bash -c "
+  - name: Build ISO
+    run: |
+      docker run --privileged \
+      -v ${{ github.workspace }}:/archiso \
+      archlinux:latest \
+      /bin/bash -c "
+      pacman-key --init
+      pacman-key --populate archlinux
 
-        pacman-key --init
-        pacman-key --populate archlinux
+      pacman -Syu --noconfirm archiso git
 
-        pacman -Syu --noconfirm archiso git
+      cd /archiso
 
-        cd /work
+      mkarchiso -v -w work -o out .
+      "
 
-        mkarchiso -v .
-        "
-
-    - name: Upload ISO artifact
-      uses: actions/upload-artifact@v4
-      with:
+  - name: Upload ISO
+    uses: actions/upload-artifact@v4
+    with:
+      name: arch-jakib-iso
+      path: out/*.iso      with:
         name: arch-jakib-iso
         path: out/*.iso
