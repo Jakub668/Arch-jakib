@@ -5,6 +5,8 @@ echo "Init pacman keys"
 pacman-key --init
 pacman-key --populate archlinux
 
+plymouth-set-default-theme -R arch-jakib
+
 echo "Enable NetworkManager"
 systemctl enable NetworkManager
 
