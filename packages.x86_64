@@ -1,40 +1,60 @@
-# Kernel
-linux-cachyos
-linux-cachyos-headers
-
-# Display managers
-sddm       # KDE/Plasma
-gdm        # GNOME
-lightdm    # Cinnamon/ogólny
-
-# Desktop environments
-plasma-meta
-gnome
-cinnamon
-
-# Xorg / Wayland
-xorg-server
-xorg-xinit
-xorg-apps
-xorg-xrandr
-xorg-xsetroot
-xorg-xinput
-mesa
-mesa-vulkan
-
-# Essential tools
 base
 base-devel
-git
-wget
-curl
-vim
-htop
-btop
-rsync
+linux
+linux-firmware
 
-# Browsers
+# boot
+grub
+efibootmgr
+os-prober
+plymouth
+
+# iso boot
+syslinux
+memtest86+
+memtest86+-efi
+edk2-ovmf
+
+# archiso
+arch-install-scripts
+
+# desktop
+plasma-meta
+sddm
+dolphin
+konsole
+
+# xorg
+xorg-server
+mesa
+
+# installer
+calamares
+calamares-config-arch
+
+# network
+networkmanager
 firefox
+
+# package manager
+pamac-gtk
+flatpak
+
+# themes / qt
+adwaita-qt
+qt6ct
+
+# performance
+zram-generator
+
+# utilities
+git
+nano
+htop
+fastfetch
+
+# dual boot
+ntfs-3gfirefox
 operagx
 
 # Multimedia
