@@ -18,18 +18,18 @@ jobs:
           mkdir -p work
           mkdir -p out
 
-      - name: Build ISO with Archiso
+      - name: Build ISO
         run: |
           docker run --privileged \
           -v ${{ github.workspace }}:/workspace \
           archlinux:latest \
           /bin/bash -c "
-          pacman-key --init
-          pacman-key --populate archlinux
+          pacman-key --init &&
+          pacman-key --populate archlinux &&
 
-          pacman -Syu --noconfirm archiso git
+          pacman -Syu --noconfirm archiso git &&
 
-          cd /workspace
+          cd /workspace &&
 
           mkarchiso -v -w work -o out .
           "
