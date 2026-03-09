@@ -1,0 +1,10 @@
+componentName: arch-jakib
+welcomeStyleCalamares: true
+
+strings:
+    productName: Arch Jakib
+    shortProductName: Arch Jakib
+    version: 1.0
+    shortVersion: 1.0
+    versionedName: Arch Jakib 1.0
+    shortVersionedName: Arch Jakib 1.0
