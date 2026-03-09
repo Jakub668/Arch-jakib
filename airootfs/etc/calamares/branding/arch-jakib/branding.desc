@@ -1,5 +1,4 @@
 componentName: arch-jakib
-welcomeStyleCalamares: true
 
 strings:
     productName: Arch Jakib
@@ -8,3 +7,10 @@ strings:
     shortVersion: 1.0
     versionedName: Arch Jakib 1.0
     shortVersionedName: Arch Jakib 1.0
+
+images:
+    productLogo: "logo.png"
+
+style:
+    sidebarBackground: "#1e1e2e"
+    sidebarText: "#ffffff"
