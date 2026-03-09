@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Arch Jakib
+Description=Arch Jakib Boot Splash
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/arch-jakib
+ScriptFile=/usr/share/plymouth/themes/arch-jakib/arch-jakib.script
