@@ -1,6 +1,7 @@
 base
 base-devel
-linux
+linux-cachyos
+linux-cachyos-headers
 linux-firmware
 
 # boot
@@ -18,11 +19,15 @@ edk2-ovmf
 # archiso
 arch-install-scripts
 
-# desktop
+# desktop environments
 plasma-meta
+gnome
+cinnamon
+
+# display managers
 sddm
-dolphin
-konsole
+gdm
+lightdm
 
 # xorg
 xorg-server
@@ -30,11 +35,36 @@ mesa
 
 # installer
 calamares
-calamares-config-arch
 
-# network
+# networking
 networkmanager
 firefox
+
+# package manager
+pamac-gtk
+flatpak
+
+# performance
+zram-generator
+ananicy-cpp
+
+# theming
+adwaita-qt
+qt6ct
+
+# dual boot
+ntfs-3g
+
+# drivers
+nvidia
+nvidia-utils
+nvidia-settings
+
+# utilities
+git
+nano
+htop
+fastfetchfirefox
 
 # package manager
 pamac-gtk
